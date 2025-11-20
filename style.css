@@ -1,4 +1,4 @@
-/* Reset Dasar */
+/* -------------------- GENERAL SETUP -------------------- */
 * {
     margin: 0;
     padding: 0;
@@ -6,109 +6,345 @@
 }
 
 body {
-    font-family: sans-serif;
+    font-family: 'Poppins', sans-serif; /* Menggunakan font Poppins */
     line-height: 1.6;
-    background-color: #f4f4f4;
-    color: #333;
+    background-color: #f8f8f8;
+    color: #444;
 }
 
 .container {
-    width: 80%;
-    max-width: 1200px;
+    width: 90%;
+    max-width: 1140px;
     margin: auto;
     overflow: hidden;
 }
 
-/* Navbar Styling */
-.navbar {
-    background: #007bff; /* Warna biru profesional */
-    color: #fff;
-    padding: 15px 0;
+/* Warna Dasar */
+:root {
+    --primary-color: #004d99; /* Biru gelap untuk brand */
+    --secondary-color: #ffc107; /* Kuning cerah untuk aksen */
+    --text-dark: #333;
+    --text-light: #fff;
+    --bg-light: #fff;
 }
 
-.navbar .container {
+a {
+    text-decoration: none;
+    color: var(--primary-color);
+}
+
+/* -------------------- TOP BAR -------------------- */
+.top-bar {
+    background: var(--primary-color);
+    color: var(--text-light);
+    padding: 8px 0;
+    font-size: 0.85rem;
+}
+
+.top-container {
     display: flex;
     justify-content: space-between;
     align-items: center;
 }
 
-.navbar .logo {
-    font-size: 1.5rem;
+.top-info i {
+    margin-right: 5px;
+    margin-left: 15px;
 }
 
-.navbar .nav-links {
+.social-icons a {
+    color: var(--text-light);
+    margin-left: 15px;
+    transition: color 0.3s;
+}
+
+.social-icons a:hover {
+    color: var(--secondary-color);
+}
+
+/* -------------------- MAIN HEADER (STICKY NAVBAR) -------------------- */
+.main-header {
+    background: var(--bg-light);
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    position: sticky; /* Membuat navbar tetap di atas */
+    top: 0;
+    z-index: 1000;
+    padding: 10px 0;
+}
+
+.header-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.logo-area {
+    display: flex;
+    align-items: center;
+}
+
+.logo-img {
+    width: 50px; /* Atur ukuran logo */
+    height: 50px;
+    margin-right: 10px;
+    /* Tambahkan border-radius jika logo berbentuk lingkaran */
+}
+
+.logo-area h1 {
+    font-size: 1.8rem;
+    color: var(--primary-color);
+    font-weight: 700;
+}
+
+.main-nav ul {
     list-style: none;
     display: flex;
 }
 
-.navbar .nav-links li a {
-    color: #fff;
-    text-decoration: none;
-    padding: 0 15px;
-    transition: color 0.3s;
+.main-nav ul li a {
+    color: var(--text-dark);
+    padding: 15px 18px;
+    display: block;
+    font-weight: 600;
+    transition: background-color 0.3s, color 0.3s;
 }
 
-.navbar .nav-links li a:hover {
-    color: #ffc107; /* Kuning keemasan saat hover */
+.main-nav ul li a:hover,
+.main-nav ul li a.active {
+    color: var(--primary-color);
+    /* border-bottom: 3px solid var(--primary-color); */
 }
 
-/* Header / Hero Section */
+.nav-cta {
+    background: var(--secondary-color);
+    color: var(--text-dark) !important;
+    padding: 8px 15px !important;
+    border-radius: 5px;
+    margin-left: 15px;
+    align-self: center;
+    line-height: 1.5;
+}
+
+.nav-cta:hover {
+    background: #ffdb58;
+}
+
+/* -------------------- HERO SECTION -------------------- */
 .hero-section {
-    background: url('placeholder-bg.jpg') no-repeat center center/cover; /* Ganti dengan gambar sekolah */
-    background-color: #34495e; /* Warna fallback */
-    color: #fff;
-    height: 400px;
+    background: url('hero-bg-placeholder.jpg') no-repeat center center/cover;
+    height: 500px;
     display: flex;
     align-items: center;
-    justify-content: center;
-    text-align: center;
+    position: relative;
+    /* Overlay untuk membuat teks mudah dibaca */
 }
 
-.hero-section h2 {
-    font-size: 3rem;
+.hero-section::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.5); /* Overlay gelap */
+}
+
+.hero-content {
+    position: relative;
+    z-index: 10;
+    color: var(--text-light);
+    text-align: center;
+    width: 100%;
+}
+
+.hero-content h2 {
+    font-size: 3.5rem;
     margin-bottom: 10px;
+    font-weight: 700;
 }
 
-.hero-section p {
-    font-size: 1.2rem;
-    margin-bottom: 20px;
+.hero-content p {
+    font-size: 1.3rem;
+    margin-bottom: 30px;
 }
 
-.cta-button {
+/* BUTTON STYLING */
+.button {
     display: inline-block;
-    background: #28a745; /* Warna hijau */
-    color: #fff;
-    padding: 10px 20px;
-    text-decoration: none;
+    padding: 12px 25px;
     border-radius: 5px;
-    transition: background-color 0.3s;
+    font-weight: 600;
+    transition: opacity 0.3s;
 }
 
-.cta-button:hover {
-    background-color: #218838;
+.primary-button {
+    background: var(--secondary-color);
+    color: var(--text-dark);
 }
 
-/* Content Section */
-.content-section {
-    padding: 40px 0;
-    background: #fff;
+.primary-button:hover {
+    opacity: 0.9;
+}
+
+.secondary-button {
+    background: var(--primary-color);
+    color: var(--text-light);
+}
+
+.secondary-button:hover {
+    background: #003366;
+}
+
+/* -------------------- WELCOME SECTION -------------------- */
+.welcome-section {
+    padding: 60px 0;
+    background: var(--bg-light);
+}
+
+.welcome-grid {
+    display: grid;
+    grid-template-columns: 2fr 1fr; /* 2/3 untuk teks, 1/3 untuk gambar */
+    gap: 40px;
+    align-items: center;
+}
+
+.welcome-text h3 {
+    font-size: 2.5rem;
+    color: var(--primary-color);
+    margin-bottom: 15px;
+    border-bottom: 3px solid var(--secondary-color);
+    display: inline-block;
+    padding-bottom: 5px;
+}
+
+.welcome-text p {
+    margin-bottom: 15px;
+    text-align: justify;
+}
+
+.signature {
+    font-style: italic;
+    font-weight: 600;
+    margin-top: 20px !important;
+}
+
+.welcome-image img {
+    width: 100%;
+    height: auto;
+    border-radius: 8px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+}
+
+/* -------------------- INFO/NEWS SECTION -------------------- */
+.info-section {
+    padding: 60px 0;
+    background: #f1f1f1; /* Warna abu-abu lembut */
+}
+
+.section-title {
     text-align: center;
+    font-size: 2.8rem;
+    color: var(--text-dark);
+    margin-bottom: 40px;
+    position: relative;
 }
 
-.content-section h3 {
-    font-size: 2rem;
-    margin-bottom: 20px;
-    color: #007bff;
+.section-title::after {
+    content: '';
+    display: block;
+    width: 60px;
+    height: 4px;
+    background: var(--primary-color);
+    margin: 10px auto 0;
 }
 
-.features p {
-    margin: 10px 0;
+.info-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 30px;
 }
 
-/* Footer */
-.footer {
-    background: #333;
-    color: #fff;
+.info-card {
+    background: var(--bg-light);
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s;
+}
+
+.info-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+}
+
+.info-card img {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+}
+
+.info-card h4 {
+    color: var(--primary-color);
+    padding: 15px;
+    font-size: 1.25rem;
+}
+
+.info-card p {
+    padding: 0 15px 15px;
+    font-size: 0.9rem;
+}
+
+.info-card a {
+    display: block;
+    padding: 10px 15px;
+    background: var(--secondary-color);
+    color: var(--text-dark);
+    font-weight: 600;
+    text-align: right;
+}
+
+/* -------------------- FOOTER -------------------- */
+.main-footer {
+    background: var(--text-dark);
+    color: var(--text-light);
+    padding-top: 40px;
+}
+
+.footer-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 30px;
+    padding-bottom: 30px;
+    border-bottom: 1px solid #555;
+}
+
+.footer-widget h3 {
+    color: var(--secondary-color);
+    margin-bottom: 15px;
+}
+
+.footer-widget ul {
+    list-style: none;
+}
+
+.footer-widget ul li a {
+    color: #ccc;
+    display: block;
+    padding: 5px 0;
+}
+
+.footer-widget ul li a:hover {
+    color: var(--secondary-color);
+}
+
+.social-icons-footer a {
+    color: var(--text-light);
+    margin-right: 15px;
+    font-size: 1.5rem;
+}
+
+.copy-right {
     text-align: center;
-    padding: 20px 0;
+    padding: 15px 0;
+    background: #222;
 }
