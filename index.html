@@ -3,44 +3,122 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sekolah Hebat - Beranda</title>
+    <title>Sekolah Hebat - Inspirasi</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 </head>
 <body>
-    <nav class="navbar">
-        <div class="container">
-            <h1 class="logo">Sekolah Hebat</h1>
-            <ul class="nav-links">
-                <li><a href="#beranda">Beranda</a></li>
-                <li><a href="#profil">Profil</a></li>
-                <li><a href="#galeri">Galeri</a></li>
-                <li><a href="#kontak">Kontak</a></li>
-            </ul>
-        </div>
-    </nav>
 
-    <header id="beranda" class="hero-section">
-        <div class="container">
-            <h2>Selamat Datang di Sekolah Hebat</h2>
-            <p>Mencetak generasi cerdas, berkarakter, dan berdaya saing global.</p>
-            <a href="#profil" class="cta-button">Pelajari Lebih Lanjut</a>
+    <div class="top-bar">
+        <div class="container top-container">
+            <div class="top-info">
+                <i class="fas fa-phone"></i> +62 21-XXX-XXXX
+                <i class="fas fa-envelope"></i> info@sekolahhebat.sch.id
+            </div>
+            <div class="social-icons">
+                <a href="#"><i class="fab fa-facebook-f"></i></a>
+                <a href="#"><i class="fab fa-instagram"></i></a>
+                <a href="#"><i class="fab fa-youtube"></i></a>
+            </div>
+        </div>
+    </div>
+
+    <header class="main-header">
+        <div class="container header-container">
+            <div class="logo-area">
+                <img src="logo-placeholder.png" alt="Logo Sekolah" class="logo-img">
+                <h1>Sekolah Hebat</h1>
+            </div>
+            <nav class="main-nav">
+                <ul>
+                    <li><a href="#home" class="active">Beranda</a></li>
+                    <li><a href="#profile">Profil Sekolah</a></li>
+                    <li><a href="#jenjang">Jenjang</a></li>
+                    <li><a href="#akademik">Akademik</a></li>
+                    <li><a href="#ppdb" class="nav-cta">PPDB 2025</a></li>
+                </ul>
+            </nav>
         </div>
     </header>
 
-    <section id="profil" class="content-section">
-        <div class="container">
-            <h3>Mengapa Memilih Kami?</h3>
-            <div class="features">
-                <p><strong>Kurikulum Unggulan:</strong> Kami menerapkan kurikulum yang relevan dengan perkembangan zaman.</p>
-                <p><strong>Fasilitas Modern:</strong> Didukung dengan sarana dan prasarana yang memadai.</p>
-                <p><strong>Guru Profesional:</strong> Tenaga pendidik yang kompeten dan berdedikasi tinggi.</p>
+    <section id="home" class="hero-section">
+        <div class="hero-content">
+            <div class="container">
+                <h2>Pendidikan Berkualitas, Masa Depan Cerah</h2>
+                <p>Menciptakan lingkungan belajar yang inspiratif dan berkarakter.</p>
+                <a href="#ppdb" class="button primary-button">Daftar Sekarang</a>
             </div>
         </div>
     </section>
 
-    <footer class="footer">
+    <section id="profile" class="welcome-section">
+        <div class="container welcome-grid">
+            <div class="welcome-text">
+                <h3>Sambutan Kepala Sekolah</h3>
+                <p>Assalamualaikum Warahmatullahi Wabarakatuh.</p>
+                <p>Selamat datang di website resmi Sekolah Hebat. Kami berkomitmen untuk menyediakan pendidikan holistik yang tidak hanya fokus pada kecerdasan akademis, tetapi juga pembentukan karakter, akhlak mulia, dan keterampilan hidup.</p>
+                <p class="signature">- Kepala Sekolah, S.Pd., M.A.</p>
+                <a href="#" class="button secondary-button">Baca Selengkapnya</a>
+            </div>
+            <div class="welcome-image">
+                <img src="kepsek-placeholder.jpg" alt="Foto Kepala Sekolah">
+            </div>
+        </div>
+    </section>
+
+    <section id="akademik" class="info-section">
         <div class="container">
-            <p>&copy; 2024 Sekolah Hebat. Semua Hak Cipta Dilindungi.</p>
+            <h2 class="section-title">Informasi Terbaru</h2>
+            <div class="info-grid">
+                <div class="info-card">
+                    <img src="news1-placeholder.jpg" alt="Berita 1">
+                    <h4>Penerimaan Siswa Baru Tahun Ajaran 2025/2026 Dibuka!</h4>
+                    <p>Pendaftaran gelombang pertama telah dibuka. Segera lengkapi berkas Anda...</p>
+                    <a href="#">Baca Detail <i class="fas fa-arrow-right"></i></a>
+                </div>
+                <div class="info-card">
+                    <img src="news2-placeholder.jpg" alt="Berita 2">
+                    <h4>Sekolah Hebat Raih Penghargaan Sekolah Adiwiyata Nasional</h4>
+                    <p>Prestasi membanggakan dalam pengelolaan lingkungan sekolah yang asri...</p>
+                    <a href="#">Baca Detail <i class="fas fa-arrow-right"></i></a>
+                </div>
+                <div class="info-card">
+                    <img src="news3-placeholder.jpg" alt="Berita 3">
+                    <h4>Simulasi Ujian Sekolah Berbasis Komputer</h4>
+                    <p>Jadwal dan panduan lengkap untuk simulasi ujian siswa kelas akhir...</p>
+                    <a href="#">Baca Detail <i class="fas fa-arrow-right"></i></a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer class="main-footer">
+        <div class="container footer-grid">
+            <div class="footer-widget">
+                <h3>Sekolah Hebat</h3>
+                <p>Jl. Pendidikan No. 1, Jakarta</p>
+                <p>Kode Pos 12345</p>
+            </div>
+            <div class="footer-widget">
+                <h3>Tautan Cepat</h3>
+                <ul>
+                    <li><a href="#">Visi Misi</a></li>
+                    <li><a href="#">Fasilitas</a></li>
+                    <li><a href="#">Kontak Kami</a></li>
+                </ul>
+            </div>
+            <div class="footer-widget">
+                <h3>Media Sosial</h3>
+                <div class="social-icons-footer">
+                    <a href="#"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                    <a href="#"><i class="fab fa-twitter"></i></a>
+                </div>
+            </div>
+        </div>
+        <div class="copy-right">
+            <p>&copy; 2024 Sekolah Hebat. Developed by [Your Name/Team].</p>
         </div>
     </footer>
 </body>
