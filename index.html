@@ -3,123 +3,427 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sekolah Hebat - Inspirasi</title>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="style.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <title>Mushola Digital Premium</title>
+    <link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    
+    <style>
+        /* --- 1. CSS PREMIUM & RESPONSIVE --- */
+        :root {
+            --primary: #0f5132; --gold: #d4af37; --dark: #212529; --glass: rgba(255, 255, 255, 0.95);
+        }
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        body { 
+            font-family: 'Poppins', sans-serif; background-color: #f0f2f5; color: var(--dark);
+            background-size: cover; background-attachment: fixed; background-position: center;
+            transition: background 0.5s; min-height: 100vh;
+        }
+        /* Overlay Putih Transparan agar tulisan terbaca */
+        body::before { content:''; position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(245,245,245,0.9); z-index:-1; }
+
+        h1, h2, h3 { font-family: 'Amiri', serif; color: var(--primary); }
+
+        /* HEADER */
+        header {
+            background: linear-gradient(135deg, var(--primary), #0b3d26); color: white; padding: 1rem 5%;
+            display: flex; justify-content: space-between; align-items: center;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2); position: sticky; top: 0; z-index: 1000;
+        }
+        .logo-area { display: flex; align-items: center; gap: 15px; }
+        .logo-area img { height: 50px; width: 50px; object-fit: cover; border-radius: 50%; border: 2px solid var(--gold); background: white; }
+        .prayer-time-header { font-size: 0.9rem; background: rgba(255,255,255,0.1); padding: 5px 15px; border-radius: 20px; border: 1px solid var(--gold); }
+
+        /* NAV */
+        nav { background: var(--gold); padding: 10px 0; text-align: center; white-space: nowrap; overflow-x: auto; }
+        nav a { color: var(--dark); text-decoration: none; margin: 0 12px; font-weight: 600; text-transform: uppercase; font-size: 0.85rem; cursor: pointer; display:inline-block; }
+        nav a.active { color: white; border-bottom: 2px solid white; }
+
+        .container { max-width: 1200px; margin: 20px auto; padding: 0 15px; }
+
+        /* SLIDER */
+        .slider-container {
+            position: relative; width: 100%; height: 250px; border-radius: 15px; overflow: hidden; margin-bottom: 20px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2); background: #ddd; border: 2px solid var(--gold);
+        }
+        @media (min-width: 768px) { .slider-container { height: 400px; } }
+        .slide { position: absolute; top: 0; left: 0; width: 100%; height: 100%; opacity: 0; transition: opacity 1s; display: flex; }
+        .slide.active { opacity: 1; }
+        .slide img { width: 100%; height: 100%; object-fit: cover; }
+        .slide-caption {
+            position: absolute; bottom: 0; left: 0; width: 100%; background: linear-gradient(transparent, rgba(0,0,0,0.8));
+            color: white; padding: 20px; text-align: center;
+        }
+
+        /* CARDS */
+        .hero-card { background: var(--glass); border-radius: 15px; padding: 20px; margin-bottom: 20px; box-shadow: 0 5px 15px rgba(0,0,0,0.05); border-top: 4px solid var(--gold); }
+        
+        /* ARTIKEL & AUTO LAYOUT TEXT */
+        .grid-3 { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px; }
+        .article-card { background: white; border-radius: 10px; overflow: hidden; box-shadow: 0 3px 10px rgba(0,0,0,0.1); display:flex; flex-direction:column; }
+        .article-card img { width: 100%; height: 200px; object-fit: cover; }
+        .article-content { padding: 15px; flex-grow: 1; }
+        
+        /* --- INI KUNCI KERAPIHAN TEXT --- */
+        .article-text-preview {
+            white-space: pre-line; /* Hormati Enter */
+            text-align: justify;   /* Rata Kanan Kiri */
+            line-height: 1.6;      /* Jarak baris enak dibaca */
+            color: #444;
+            font-size: 0.95rem;
+        }
+
+        .btn { background: var(--primary); color: white; padding: 10px; border: none; border-radius: 5px; cursor: pointer; width: 100%; margin-top: 10px; font-weight: bold; }
+        .btn:hover { background: #0b3d26; }
+
+        /* PRAYER GRID */
+        .prayer-grid { display: grid; grid-template-columns: repeat(5, 1fr); gap: 5px; margin-top: 10px; text-align: center; }
+        .prayer-item { background: var(--primary); color: white; padding: 8px 2px; border-radius: 8px; font-size: 0.8rem; }
+        .prayer-item .time { font-size: 1rem; font-weight: bold; color: var(--gold); display: block; margin-top: 2px; }
+
+        /* MODAL & ADMIN */
+        #admin-login-modal { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.8); display: none; justify-content: center; align-items: center; z-index: 2000; }
+        .login-box { background: white; padding: 30px; border-radius: 10px; width: 90%; max-width: 350px; }
+        .login-box input { width: 100%; padding: 12px; margin: 10px 0; border: 1px solid #ddd; border-radius: 5px; }
+        
+        /* FLOATING WA */
+        .float-wa { position: fixed; bottom: 20px; right: 20px; background: #25D366; color: white; width: 60px; height: 60px; border-radius: 50%; text-align: center; line-height: 60px; font-size: 30px; box-shadow: 0 4px 10px rgba(0,0,0,0.3); z-index: 999; }
+        
+        .section { display: none; animation: fadeIn 0.5s; }
+        .section.active { display: block; }
+        @keyframes fadeIn { from {opacity:0;} to {opacity:1;} }
+        
+        footer { text-align: center; padding: 40px 20px; background: var(--dark); color: #bbb; margin-top: 40px; }
+    </style>
 </head>
 <body>
 
-    <div class="top-bar">
-        <div class="container top-container">
-            <div class="top-info">
-                <i class="fas fa-phone"></i> +62 21-XXX-XXXX
-                <i class="fas fa-envelope"></i> info@sekolahhebat.sch.id
+    <header>
+        <div class="logo-area">
+            <img src="https://via.placeholder.com/50/d4af37/ffffff?text=M" alt="Logo" id="header-logo">
+            <div>
+                <h2 id="header-nama" style="margin:0; font-size:1.1rem; line-height:1.2;">Mushola App</h2>
+                <small style="font-size:0.7rem; opacity:0.9;">Aplikasi Umat Digital</small>
             </div>
-            <div class="social-icons">
-                <a href="#"><i class="fab fa-facebook-f"></i></a>
-                <a href="#"><i class="fab fa-instagram"></i></a>
-                <a href="#"><i class="fab fa-youtube"></i></a>
+        </div>
+        <div class="prayer-time-header"><i class="fas fa-clock"></i> <span id="clock-display">--:--</span></div>
+    </header>
+
+    <nav>
+        <a onclick="showSection('beranda')" class="active">Beranda</a>
+        <a onclick="showSection('tentang')">Tentang</a>
+        <a onclick="showSection('agenda')">Agenda</a>
+        <a onclick="showSection('lembaga')">Lembaga</a>
+        <a onclick="showSection('admin')">Admin</a>
+    </nav>
+
+    <div class="container">
+
+        <section id="beranda" class="section active">
+            
+            <div class="slider-container" id="hero-slider">
+                <div class="slide active">
+                    <img src="https://via.placeholder.com/800x400/0f5132/ffffff?text=Loading+Data..." alt="Loading">
+                </div>
             </div>
+
+            <div class="hero-card">
+                <h3><i class="fas fa-mosque"></i> Jadwal Sholat</h3>
+                <div class="prayer-grid" id="prayer-container">Loading...</div>
+            </div>
+
+            <div class="hero-card" style="background: #fff3cd; border-color: #ffc107; padding:10px;">
+                <marquee id="running-text" style="font-weight:bold; color:#856404">Selamat Datang...</marquee>
+            </div>
+
+            <h3 style="margin: 20px 0; border-bottom: 3px solid var(--gold); display:inline-block;">Berita & Artikel</h3>
+            <div class="grid-3" id="article-list">
+                <p style="text-align:center; color:#888;">Memuat konten...</p>
+            </div>
+        </section>
+
+        <section id="tentang" class="section">
+            <div class="hero-card">
+                <h3>Sejarah & Profil</h3>
+                <p id="history-content" class="article-text-preview">Data belum diisi.</p>
+            </div>
+            <h3>Pengurus</h3>
+            <div class="grid-3" id="team-list"></div>
+        </section>
+
+        <section id="agenda" class="section">
+            <h3>Agenda Kegiatan</h3>
+            <div class="grid-3" id="agenda-list"><p>Belum ada agenda.</p></div>
+        </section>
+
+        <section id="lembaga" class="section">
+            <div class="grid-3">
+                <div class="hero-card"><h3>Zakat Mal & Fitrah</h3><p>Layanan penerimaan zakat.</p></div>
+                <div class="hero-card"><h3>TPQ / Madin</h3><p>Pendidikan Al-Qur'an.</p></div>
+            </div>
+        </section>
+
+        <section id="admin" class="section">
+            <div class="hero-card" id="login-prompt" style="text-align:center;">
+                <i class="fas fa-user-lock" style="font-size:3rem; color:var(--primary); margin-bottom:10px;"></i>
+                <h3>Area Terbatas</h3>
+                <p>Silakan login untuk mengelola konten website.</p>
+                <button class="btn" onclick="toggleLoginModal()">Login Pengurus</button>
+            </div>
+
+            <div id="admin-dashboard" style="display:none;">
+                <h2 style="border-bottom:2px solid red; padding-bottom:10px; margin-bottom:20px;">
+                    <i class="fas fa-tachometer-alt"></i> Dashboard Admin
+                </h2>
+
+                <div class="hero-card">
+                    <h4><i class="fas fa-pen"></i> Tulis Berita Baru</h4>
+                    <input type="text" id="inp-judul" placeholder="Judul Berita" style="width:100%; padding:10px; margin:10px 0; border:1px solid #ccc;">
+                    
+                    <textarea id="inp-konten" placeholder="Tulis isi berita disini... (Tekan Enter untuk baris baru)" 
+                    style="width:100%; height:150px; padding:10px; border:1px solid #ccc; white-space: pre-line;"></textarea>
+                    
+                    <div style="margin:15px 0; background:#eee; padding:10px; border-radius:5px;">
+                        <p style="margin-bottom:5px; font-weight:bold;">Foto Kegiatan:</p>
+                        <input type="file" id="inp-foto" accept="image/*">
+                    </div>
+                    
+                    <p id="status-upload" style="color:var(--primary); font-weight:bold; display:none;">⏳ Sedang memproses...</p>
+                    <button class="btn" onclick="uploadAndSave()">🚀 Upload & Terbitkan</button>
+                </div>
+                
+                <div class="hero-card" style="background:#ffebee;">
+                    <button class="btn" style="background:#d32f2f;" onclick="logout()">Keluar (Logout)</button>
+                </div>
+            </div>
+        </section>
+
+    </div>
+
+    <footer>
+        <p>&copy; 2025 Mushola Digital Premium.</p>
+    </footer>
+
+    <a href="#" class="float-wa" id="wa-link" target="_blank"><i class="fab fa-whatsapp"></i></a>
+
+    <div id="admin-login-modal">
+        <div class="login-box">
+            <h3>Verifikasi</h3>
+            <input type="text" id="adm-user" placeholder="Username">
+            <input type="password" id="adm-pass" placeholder="Password">
+            <button class="btn" onclick="doLogin()">Masuk</button>
+            <button class="btn" style="background:#999; margin-top:5px;" onclick="toggleLoginModal()">Batal</button>
         </div>
     </div>
 
-    <header class="main-header">
-        <div class="container header-container">
-            <div class="logo-area">
-                <img src="logo-placeholder.png" alt="Logo Sekolah" class="logo-img">
-                <h1>Sekolah Hebat</h1>
-            </div>
-            <nav class="main-nav">
-                <ul>
-                    <li><a href="#home" class="active">Beranda</a></li>
-                    <li><a href="#profile">Profil Sekolah</a></li>
-                    <li><a href="#jenjang">Jenjang</a></li>
-                    <li><a href="#akademik">Akademik</a></li>
-                    <li><a href="#ppdb" class="nav-cta">PPDB 2025</a></li>
-                </ul>
-            </nav>
-        </div>
-    </header>
+    <script>
+        // --- ISI KONFIGURASI INI DENGAN BENAR ---
+        const GAS_URL = 'https://script.google.com/macros/s/AKfycbz4OPzIcPGPPZPPf0YM4C1JJBUqS6k1WvjcwbjLrLFT6npOU6vTKzZ3n7UVG_Hbjfk5/exec'; 
+        const API_KEY = 'Nurmuhamad3@';
+        const CACHE_KEY = 'MUSHOLA_V5_PREMIUM';
 
-    <section id="home" class="hero-section">
-        <div class="hero-content">
-            <div class="container">
-                <h2>Pendidikan Berkualitas, Masa Depan Cerah</h2>
-                <p>Menciptakan lingkungan belajar yang inspiratif dan berkarakter.</p>
-                <a href="#ppdb" class="button primary-button">Daftar Sekarang</a>
-            </div>
-        </div>
-    </section>
+        // --- INIT ---
+        document.addEventListener("DOMContentLoaded", function() {
+            loadPrayerTimes();
+            initApp();
+            setInterval(updateClock, 1000);
+        });
 
-    <section id="profile" class="welcome-section">
-        <div class="container welcome-grid">
-            <div class="welcome-text">
-                <h3>Sambutan Kepala Sekolah</h3>
-                <p>Assalamualaikum Warahmatullahi Wabarakatuh.</p>
-                <p>Selamat datang di website resmi Sekolah Hebat. Kami berkomitmen untuk menyediakan pendidikan holistik yang tidak hanya fokus pada kecerdasan akademis, tetapi juga pembentukan karakter, akhlak mulia, dan keterampilan hidup.</p>
-                <p class="signature">- Kepala Sekolah, S.Pd., M.A.</p>
-                <a href="#" class="button secondary-button">Baca Selengkapnya</a>
-            </div>
-            <div class="welcome-image">
-                <img src="kepsek-placeholder.jpg" alt="Foto Kepala Sekolah">
-            </div>
-        </div>
-    </section>
+        // --- 1. SISTEM CACHE & SYNC (LOGIKA KECEPATAN CAHAYA) ---
+        async function initApp() {
+            // Step 1: Load dari Cache (Instant)
+            const cached = localStorage.getItem(CACHE_KEY);
+            if (cached) {
+                console.log("⚡ Cache Loaded");
+                renderData(JSON.parse(cached));
+            }
 
-    <section id="akademik" class="info-section">
-        <div class="container">
-            <h2 class="section-title">Informasi Terbaru</h2>
-            <div class="info-grid">
-                <div class="info-card">
-                    <img src="news1-placeholder.jpg" alt="Berita 1">
-                    <h4>Penerimaan Siswa Baru Tahun Ajaran 2025/2026 Dibuka!</h4>
-                    <p>Pendaftaran gelombang pertama telah dibuka. Segera lengkapi berkas Anda...</p>
-                    <a href="#">Baca Detail <i class="fas fa-arrow-right"></i></a>
-                </div>
-                <div class="info-card">
-                    <img src="news2-placeholder.jpg" alt="Berita 2">
-                    <h4>Sekolah Hebat Raih Penghargaan Sekolah Adiwiyata Nasional</h4>
-                    <p>Prestasi membanggakan dalam pengelolaan lingkungan sekolah yang asri...</p>
-                    <a href="#">Baca Detail <i class="fas fa-arrow-right"></i></a>
-                </div>
-                <div class="info-card">
-                    <img src="news3-placeholder.jpg" alt="Berita 3">
-                    <h4>Simulasi Ujian Sekolah Berbasis Komputer</h4>
-                    <p>Jadwal dan panduan lengkap untuk simulasi ujian siswa kelas akhir...</p>
-                    <a href="#">Baca Detail <i class="fas fa-arrow-right"></i></a>
-                </div>
-            </div>
-        </div>
-    </section>
+            // Step 2: Fetch Data Baru (Background)
+            if(GAS_URL.includes('MASUKKAN')) return; // Stop jika URL belum diisi
+            
+            try {
+                const res = await fetch(`${GAS_URL}?action=getData&apikey=${API_KEY}`);
+                const json = await res.json();
+                if(json.status === 'success') {
+                    // Cek apakah ada perubahan data?
+                    if(JSON.stringify(json.data) !== cached) {
+                        console.log("✨ Data Updated");
+                        localStorage.setItem(CACHE_KEY, JSON.stringify(json.data));
+                        renderData(json.data);
+                    }
+                }
+            } catch(e) { console.log('Offline Mode'); }
+        }
 
-    <footer class="main-footer">
-        <div class="container footer-grid">
-            <div class="footer-widget">
-                <h3>Sekolah Hebat</h3>
-                <p>Jl. Pendidikan No. 1, Jakarta</p>
-                <p>Kode Pos 12345</p>
-            </div>
-            <div class="footer-widget">
-                <h3>Tautan Cepat</h3>
-                <ul>
-                    <li><a href="#">Visi Misi</a></li>
-                    <li><a href="#">Fasilitas</a></li>
-                    <li><a href="#">Kontak Kami</a></li>
-                </ul>
-            </div>
-            <div class="footer-widget">
-                <h3>Media Sosial</h3>
-                <div class="social-icons-footer">
-                    <a href="#"><i class="fab fa-facebook-f"></i></a>
-                    <a href="#"><i class="fab fa-instagram"></i></a>
-                    <a href="#"><i class="fab fa-twitter"></i></a>
-                </div>
-            </div>
-        </div>
-        <div class="copy-right">
-            <p>&copy; 2024 Sekolah Hebat. Developed by [Your Name/Team].</p>
-        </div>
-    </footer>
+        // --- 2. RENDER DATA ---
+        function renderData(data) {
+            // Config
+            const cfg = {};
+            if(data.config) data.config.forEach(c => cfg[c.Key] = c.Value);
+            
+            if(cfg.NamaMushola) document.getElementById('header-nama').innerText = cfg.NamaMushola;
+            if(cfg.RunningText) document.getElementById('running-text').innerText = cfg.RunningText;
+            if(cfg.LogoUrl) document.getElementById('header-logo').src = imgTurbo(cfg.LogoUrl);
+            if(cfg.BackgroundUrl) document.body.style.backgroundImage = `url('${imgTurbo(cfg.BackgroundUrl)}')`;
+            
+            // WA Link
+            if(cfg.WaNumber) {
+                let wa = cfg.WaNumber.toString();
+                if(wa.startsWith('0')) wa = '62' + wa.substring(1);
+                document.getElementById('wa-link').href = `https://wa.me/${wa}`;
+            }
+
+            // Slider
+            let slides = data.slider || (data.content ? data.content.slice(0,3) : []);
+            if(slides.length > 0) {
+                let html = '';
+                slides.forEach((s, i) => {
+                    let img = s.FotoUrl || s.Foto || 'https://via.placeholder.com/800x400';
+                    html += `<div class="slide ${i===0?'active':''}"><img src="${imgTurbo(img)}" alt="slide"><div class="slide-caption">${s.Caption || s.Judul || ''}</div></div>`;
+                });
+                document.getElementById('hero-slider').innerHTML = html;
+                startSlider();
+            }
+
+            // Content (Artikel)
+            if(data.content) {
+                let html = '';
+                data.content.forEach(item => {
+                    html += `
+                    <div class="article-card">
+                        <img src="${imgTurbo(item.FotoUrl)}" loading="lazy" onerror="this.src='https://via.placeholder.com/400x200'">
+                        <div class="article-content">
+                            <h4>${item.Judul}</h4>
+                            <div class="article-text-preview">
+                                ${item.Konten.substring(0, 150)}...
+                            </div>
+                            <button class="btn" onclick="alert('Fitur baca detail akan segera aktif!')">Baca Selengkapnya</button>
+                        </div>
+                    </div>`;
+                });
+                document.getElementById('article-list').innerHTML = html;
+            }
+        }
+
+        // --- 3. FITUR UPLOAD & SIMPAN (ADMIN) ---
+        async function uploadAndSave() {
+            const judul = document.getElementById('inp-judul').value;
+            const konten = document.getElementById('inp-konten').value;
+            const fileInput = document.getElementById('inp-foto');
+            const status = document.getElementById('status-upload');
+
+            if(!judul || fileInput.files.length === 0) { alert('Judul dan Foto wajib diisi!'); return; }
+
+            status.style.display = 'block';
+            status.innerText = '1/2 Mengupload Foto...';
+
+            const file = fileInput.files[0];
+            const reader = new FileReader();
+            
+            reader.onload = async function(e) {
+                const base64 = e.target.result.split(',')[1];
+                
+                // A. Upload Foto
+                try {
+                    const resUp = await fetch(GAS_URL, {
+                        method: 'POST',
+                        body: JSON.stringify({
+                            action: 'upload', apikey: API_KEY,
+                            fileName: file.name, mimeType: file.type, fileData: base64
+                        })
+                    });
+                    const jsonUp = await resUp.json();
+                    
+                    if(jsonUp.status === 'success') {
+                        status.innerText = '2/2 Menyimpan Artikel...';
+                        
+                        // B. Simpan Artikel
+                        const resSave = await fetch(GAS_URL, {
+                            method: 'POST',
+                            body: JSON.stringify({
+                                action: 'saveArticle', apikey: API_KEY,
+                                judul: judul, konten: konten, fotoUrl: jsonUp.url
+                            })
+                        });
+                        const jsonSave = await resSave.json();
+                        
+                        if(jsonSave.status === 'success') {
+                            alert('✅ Berhasil Terbit!');
+                            location.reload(); // Refresh agar data baru muncul
+                        } else { alert('Gagal simpan data.'); }
+                    } else { alert('Gagal upload foto.'); }
+                } catch(err) { alert('Error: ' + err); }
+            };
+            reader.readAsDataURL(file);
+        }
+
+        // --- 4. HELPER FUNCTION ---
+        // Image Turbo: Mengubah link Drive lambat menjadi CDN Cepat
+        function imgTurbo(url) {
+            if(!url) return '';
+            if(url.includes('drive.google.com')) {
+                const id = url.match(/[-\w]{25,}/);
+                if(id) return `https://wsrv.nl/?url=https://drive.google.com/uc?id=${id[0]}&w=600&fit=cover&a=center`;
+            }
+            return url;
+        }
+
+        function startSlider() {
+            let slides = document.querySelectorAll('.slide');
+            if(slides.length < 2) return;
+            let curr = 0;
+            setInterval(() => {
+                slides[curr].classList.remove('active');
+                curr = (curr + 1) % slides.length;
+                slides[curr].classList.add('active');
+            }, 4000);
+        }
+
+        // Jadwal Sholat API
+        async function loadPrayerTimes() {
+            try {
+                const r = await fetch('https://api.aladhan.com/v1/timingsByCity?city=Cirebon&country=Indonesia&method=20');
+                const d = await r.json();
+                const t = d.data.timings;
+                let h = '';
+                ['Fajr','Dhuhr','Asr','Maghrib','Isha'].forEach(k => {
+                    h += `<div class="prayer-item"><div>${k}</div><span class="time">${t[k]}</span></div>`;
+                });
+                document.getElementById('prayer-container').innerHTML = h;
+            } catch(e){}
+        }
+
+        // Navigasi & Login
+        function showSection(id) {
+            document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
+            document.getElementById(id).classList.add('active');
+            document.querySelectorAll('nav a').forEach(a => a.classList.remove('active'));
+            event.target.classList.add('active');
+        }
+        function toggleLoginModal() {
+            const m = document.getElementById('admin-login-modal');
+            m.style.display = m.style.display === 'flex' ? 'none' : 'flex';
+        }
+        async function doLogin() {
+            const u = document.getElementById('adm-user').value;
+            const p = document.getElementById('adm-pass').value;
+            // Cek Login ke Server
+            try {
+                const req = await fetch(GAS_URL, {
+                    method: 'POST', body: JSON.stringify({action:'login', apikey:API_KEY, username:u, password:p})
+                });
+                const res = await req.json();
+                if(res.status === 'success') {
+                    toggleLoginModal();
+                    document.getElementById('login-prompt').style.display = 'none';
+                    document.getElementById('admin-dashboard').style.display = 'block';
+                    alert('Selamat Datang Pengurus!');
+                } else { alert('Login Gagal'); }
+            } catch(e){ alert('Koneksi Error'); }
+        }
+        function logout() { location.reload(); }
+        function updateClock() {
+            document.getElementById('clock-display').innerText = new Date().toLocaleTimeString('id-ID', {hour:'2-digit', minute:'2-digit'});
+        }
+    </script>
 </body>
 </html>
